@@ -7,7 +7,6 @@ import java.util.Set;
 /**
  * create a POJO
  */
-
 @Entity
 public class Author {
 
@@ -16,10 +15,9 @@ public class Author {
     private Long id;
     private String firstName;
     private String lastName;
+
     @ManyToMany(mappedBy = "authors")
-    private Set<Book> books = new HashSet<>();
-
-
+    private Set<Book> books  = new HashSet<>();
 
     public Author() {
     }
@@ -74,12 +72,12 @@ public class Author {
 
         Author author = (Author) o;
 
-        return id.equals(author.id);
+        return id != null ? id.equals(author.id) : author.id == null;
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override
